@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perang Badar Kubra - Media Pembelajaran Sejarah Islam</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-main: #fbfbfa;
+            --bg-card: #ffffff;
+            --bg-secondary: #f3f6f4;
+            --green-primary: #15432c;
+            --green-hover: #1c5639;
+            --green-sage: #799b82;
+            --green-light: #e8efe9;
+            --gold-accent: #c59b27;
+            --gold-light: #fef9e7;
+            --text-dark: #1d232a;
+            --text-muted: #525b64;
+            --border-color: #e2e8e4;
+            --shadow-soft: 0 10px 30px rgba(21, 67, 44, 0.05);
+            --shadow-hover: 0 18px 40px rgba(21, 67, 44, 0.12);
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Reading Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--green-sage), var(--gold-accent));
+            width: 0%;
+            z-index: 1001;
+            transition: width 0.1s linear;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 96px 0;
+        }
+
+        .text-center { text-align: center; }
+
+        /* Typography Helpers */
+        .section-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background-color: var(--green-light);
+            color: var(--green-primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(121, 155, 130, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 48px auto;
+            font-size: 1.05rem;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(251, 251, 250, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 228, 0.8);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-soft);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 4px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--green-primary), var(--green-sage));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(21, 67, 44, 0.15);
+        }
+
+        .brand-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--green-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold-accent);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--green-light);
+            padding: 6px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(121, 155, 130, 0.2);
+        }
+
+        .user-avatar {
+            width: 28px;
+            height: 28px;
+            background-color: var(--green-primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .user-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--green-primary);
+        }
+
+        .user-class {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.5rem;
+            color: var(--green-primary);
+        }
+
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 96px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at top right, rgba(121, 155, 130, 0.12), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(197, 155, 39, 0.08), transparent 50%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .hero-text {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--green-primary);
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(21, 67, 44, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(21, 67, 44, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-card);
+            color: var(--green-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--green-primary);
+            background-color: var(--green-light);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, #15432c 0%, #0d2c1d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-hover);
+            overflow: hidden;
+        }
+
+        .hero-svg-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+        }
+
+        .before-war-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            padding: 28px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--green-sage);
+        }
+
+        .info-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--green-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-primary);
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .info-card-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .info-card-value {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--green-primary);
+        }
+
+        .context-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--gold-accent);
+            padding: 32px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 48px;
+        }
+
+        .context-box h3 {
+            color: var(--green-primary);
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+        }
+
+        .context-box p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            background: var(--green-primary);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            color: #ffffff;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--gold-accent);
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .timeline-wrapper {
+            margin-top: 40px;
+        }
+
+        .timeline-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+            scrollbar-width: thin;
+        }
+
+        .timeline-step {
+            flex: 1;
+            min-width: 140px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .timeline-step.active {
+            border-color: var(--green-primary);
+            background: var(--green-light);
+            transform: translateY(-2px);
+        }
+
+        .timeline-step-phase {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+        }
+
+        .timeline-step-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            margin-top: 4px;
+        }
+
+        .timeline-display {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-top: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+            min-height: 220px;
+            transition: var(--transition);
+        }
+
+        .timeline-content-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-icon-badge {
+            width: 56px;
+            height: 56px;
+            background: var(--green-light);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-primary);
+            font-size: 1.5rem;
+        }
+
+        .timeline-detail-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--green-primary);
+        }
+
+        .timeline-detail-text {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .map-section-box {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .svg-map-container {
+            width: 100%;
+            height: 320px;
+            background: #f4f7f4;
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .map-node {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .map-node:hover circle {
+            fill: var(--gold-accent);
+            r: 14;
+        }
+
+        .map-node-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .map-info-box {
+            margin-top: 24px;
+            background: var(--green-light);
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--green-primary);
+        }
+
+        .map-info-title {
+            font-weight: 800;
+            color: var(--green-primary);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .map-info-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .strategy-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--green-sage);
+        }
+
+        .strategy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .strategy-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: rgba(21, 67, 44, 0.2);
+        }
+
+        .strategy-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--green-light);
+            color: var(--green-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .strategy-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 12px;
+        }
+
+        .strategy-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .btn-analisis {
+            width: 100%;
+            padding: 10px;
+            background: var(--green-light);
+            color: var(--green-primary);
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-analisis:hover {
+            background: var(--green-primary);
+            color: #ffffff;
+        }
+
+        .factors-wrapper {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .factor-item {
+            margin-bottom: 24px;
+        }
+
+        .factor-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .factor-name { color: var(--green-primary); }
+        .factor-percent { color: var(--gold-accent); }
+
+        .progress-track {
+            height: 12px;
+            background: var(--bg-secondary);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green-sage), var(--green-primary));
+            border-radius: 50px;
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
+        }
+
+        .perspective-note {
+            margin-top: 32px;
+            padding: 20px;
+            background: var(--gold-light);
+            border: 1px solid rgba(197, 155, 39, 0.3);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: #6d5208;
+            line-height: 1.6;
+        }
+
+        .quran-section {
+            background: linear-gradient(135deg, #15432c 0%, #0c2b1c 100%);
+            color: #ffffff;
+            border-radius: var(--radius-lg);
+            padding: 56px 40px;
+            box-shadow: var(--shadow-hover);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quran-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-md);
+            padding: 36px;
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            line-height: 2.2;
+            color: #fef9e7;
+            margin-bottom: 20px;
+            direction: rtl;
+        }
+
+        .translation-text {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-style: italic;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .surah-ref {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .victory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .stat-card-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .mini-stat-card {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+        }
+
+        .mini-stat-num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--green-primary);
+        }
+
+        .mini-stat-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .historical-disclaimer {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        .hikmah-main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .hikmah-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .hikmah-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--gold-accent);
+        }
+
+        .hikmah-card-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 12px;
+        }
+
+        .hikmah-card-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .hikmah-extra-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .tag-item {
+            background: var(--green-light);
+            color: var(--green-primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: 1px solid rgba(121, 155, 130, 0.2);
+            transition: var(--transition);
+        }
+
+        .tag-item:hover {
+            background: var(--green-primary);
+            color: #ffffff;
+        }
+
+        .reflection-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .reflection-question {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .reflection-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: var(--bg-main);
+            border: 2px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            text-align: left;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-btn:hover {
+            border-color: var(--green-sage);
+            background: var(--green-light);
+        }
+
+        .reflection-feedback {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            display: none;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .quiz-container {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .quiz-progress-text {
+            font-weight: 700;
+            color: var(--green-primary);
+            font-size: 0.9rem;
+        }
+
+        .quiz-question {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .quiz-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .quiz-choice {
+            padding: 16px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quiz-choice:hover {
+            border-color: var(--green-sage);
+            background: var(--green-light);
+        }
+
+        .quiz-choice.selected {
+            border-color: var(--green-primary);
+            background: var(--green-light);
+            color: var(--green-primary);
+        }
+
+        .quiz-choice.correct {
+            border-color: #2e7d32;
+            background: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .quiz-choice.wrong {
+            border-color: #c62828;
+            background: #ffebee;
+            color: #b71c1c;
+        }
+
+        .quiz-result {
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-score {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin: 16px 0;
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--green-light), var(--bg-card));
+            border: 2px solid var(--green-sage);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            text-align: center;
+        }
+
+        .conclusion-quote {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            font-style: italic;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px dashed var(--green-sage);
+        }
+
+        .footer {
+            background: var(--green-primary);
+            color: #ffffff;
+            padding: 64px 0 32px 0;
+            margin-top: 96px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            max-width: 360px;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--gold-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        /* Modal Component */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            padding: 36px;
+            position: relative;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-section {
+            margin-bottom: 16px;
+        }
+
+        .modal-section-subtitle {
+            font-weight: 700;
+            color: var(--gold-accent);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .modal-section-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid, .victory-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-visual {
+                height: 320px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-menu {
+                position: fixed;
+                top: 72px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 72px);
+                background: var(--bg-card);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: var(--transition);
+            }
+            .nav-menu.active { left: 0; }
+            .hero-title { font-size: 2.25rem; }
+            .stat-card-box { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .quiz-container { padding: 24px; }
+            .timeline-nav { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#beranda" class="nav-brand">
+                <div class="brand-logo"><i class="fa-solid fa-kaaba"></i></div>
+                <span class="brand-text">BADAR KUBRA</span>
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+                <li><a href="#sejarah" class="nav-link">Sejarah</a></li>
+                <li><a href="#jalannya-perang" class="nav-link">Jalannya Perang</a></li>
+                <li><a href="#peta-lokasi" class="nav-link">Peta Rute</a></li>
+                <li><a href="#strategi" class="nav-link">Strategi</a></li>
+                <li><a href="#pertolongan-allah" class="nav-link">Pertolongan Allah</a></li>
+                <li><a href="#kemenangan" class="nav-link">Kemenangan</a></li>
+                <li><a href="#hikmah" class="nav-link">Hikmah</a></li>
+                <li><a href="#quiz" class="nav-link">Quiz</a></li>
+            </ul>
+
+            <div class="nav-user">
+                <div class="user-avatar">SZ</div>
+                <div class="user-info">
+                    <span class="user-name">Shawqi Zhafirun Hayyan</span>
+                    <span class="user-class">11 RPL</span>
+                </div>
+            </div>
+
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero" id="beranda">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="section-badge"><i class="fa-solid fa-book-quran"></i> Media Pembelajaran Interaktif</span>
+                <h1 class="hero-title">PERANG BADAR KUBRA</h1>
+                <h2 class="hero-subtitle">Ketika Ikhtiar, Keberanian, dan Pertolongan Allah Bertemu</h2>
+                <p class="hero-text">
+                    Perang Badar merupakan salah satu peristiwa paling menentukan dalam sejarah Islam yang terjadi pada tahun 2 Hijriah. Peristiwa ini menunjukkan bagaimana kaum Muslimin menghadapi keadaan yang sangat sulit dengan persiapan, keberanian, strategi, doa, dan tawakal kepada Allah.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#sejarah" class="btn btn-primary"><i class="fa-solid fa-compass"></i> Mulai Belajar</a>
+                    <a href="#jalannya-perang" class="btn btn-secondary"><i class="fa-solid fa-timeline"></i> Jelajahi Perang</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <!-- Abstract Islamic SVG Visualization -->
+                <svg class="hero-svg-bg" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Geometric Pattern Overlay -->
+                    <circle cx="250" cy="200" r="180" stroke="url(#gold-grad)" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.4"/>
+                    <circle cx="250" cy="200" r="120" stroke="url(#gold-grad)" stroke-width="1" opacity="0.3"/>
+                    
+                    <!-- Stylized Desert Dunes Silhouettes -->
+                    <path d="M0 320 Q 150 260, 300 310 T 500 280 L 500 400 L 0 400 Z" fill="#0d2c1d" opacity="0.9"/>
+                    <path d="M0 350 Q 200 300, 350 340 T 500 310 L 500 400 L 0 400 Z" fill="#071b12"/>
+                    
+                    <!-- Crescent & Rays Visual -->
+                    <path d="M 250 80 A 30 30 0 0 0 280 110 A 35 35 0 1 1 250 80 Z" fill="#c59b27" opacity="0.9"/>
+                    <circle cx="270" cy="95" r="3" fill="#ffffff"/>
+                    
+                    <defs>
+                        <linearGradient id="gold-grad" x1="0" y1="0" x2="500" y2="400" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#c59b27"/>
+                            <stop offset="1" stop-color="#799b82"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="sejarah">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge">Konteks Historis</span>
+                <h2 class="section-title">SEBELUM PERANG</h2>
+                <p class="section-desc">Pahami situasi dan latar belakang geopolitik Jazirah Arab sebelum terjadinya pertempuran di Lembah Badar.</p>
+            </div>
+
+            <div class="before-war-cards">
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fa-regular fa-calendar"></i></div>
+                    <div class="info-card-label">Waktu Peristiwa</div>
+                    <div class="info-card-value">17 Ramadan 2 H</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-card-label">Lokasi Utama</div>
+                    <div class="info-card-value">Lembah Badar</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="info-card-label">Pihak Berhadapan</div>
+                    <div class="info-card-value">Muslim vs Quraisy</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <div class="info-card-label">Pemimpin Muslimin</div>
+                    <div class="info-card-value">Rasulullah ﷺ</div>
+                </div>
+            </div>
+
+            <div class="context-box">
+                <h3><i class="fa-solid fa-circle-info" style="color: var(--gold-accent);"></i> Latar Belakang Peristiwa</h3>
+                <p>
+                    Setelah bertahun-tahun mengalami penindasan dan perampasan harta benda di Makkah, kaum Muslimin berhijrah ke Madinah. Perang Badar bermula ketika Rasulullah ﷺ merencanakan pencegahan terhadap kafilah dagang Quraisy yang dipimpin oleh Abu Sufyan. Kafilah ini membawa harta berharga milik kaum Muslimin yang ditinggalkan secara paksa di Makkah. Namun, Abu Sufyan berhasil meloloskan diri dan mengirim utusan ke Makkah untuk meminta bantuan militer penuh.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="313">0</div>
+                    <div class="stat-label">Pasukan Muslimin (Sekitar)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label">Pasukan Quraisy (Sekitar)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="70">0</div>
+                    <div class="stat-label">Tawanan Perang Quraisy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="14">0</div>
+                    <div class="stat-label">Syuhada Muslimin</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="jalannya-perang" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge">Kronologi Peristiwa</span>
+                <h2 class="section-title">JALANNYA PERANG BADAR</h2>
+                <p class="section-desc">Klik setiap tahapan di bawah untuk memahami alur kronologis peristiwa Badar Kubra dari awal hingga kemenangan.</p>
+            </div>
+
+            <div class="timeline-wrapper">
+                <div class="timeline-nav">
+                    <div class="timeline-step active" data-phase="0">
+                        <div class="timeline-step-phase">FASE 01</div>
+                        <div class="timeline-step-title">Latar Belakang</div>
+                    </div>
+                    <div class="timeline-step" data-phase="1">
+                        <div class="timeline-step-phase">FASE 02</div>
+                        <div class="timeline-step-title">Pergerakan</div>
+                    </div>
+                    <div class="timeline-step" data-phase="2">
+                        <div class="timeline-step-phase">FASE 03</div>
+                        <div class="timeline-step-title">Pertemuan Badar</div>
+                    </div>
+                    <div class="timeline-step" data-phase="3">
+                        <div class="timeline-step-phase">FASE 04</div>
+                        <div class="timeline-step-title">Awal Duel</div>
+                    </div>
+                    <div class="timeline-step" data-phase="4">
+                        <div class="timeline-step-phase">FASE 05</div>
+                        <div class="timeline-step-title">Pertempuran</div>
+                    </div>
+                    <div class="timeline-step" data-phase="5">
+                        <div class="timeline-step-phase">FASE 06</div>
+                        <div class="timeline-step-title">Kemenangan</div>
+                    </div>
+                </div>
+
+                <div class="timeline-display" id="timeline-display">
+                    <div class="timeline-content-header">
+                        <div class="timeline-icon-badge" id="timeline-icon"><i class="fa-solid fa-flag"></i></div>
+                        <h3 class="timeline-detail-title" id="timeline-title">Latar Belakang Pencegahan Kafilah</h3>
+                    </div>
+                    <p class="timeline-detail-text" id="timeline-text">
+                        Awal mula perang adalah rencana pembalasan terhadap perampasan harta benda kaum Muhajirin oleh Quraisy. Rasulullah ﷺ bersama sekitar 313 prajurit keluar dari Madinah bukan dengan intensi awal melakukan perang terbuka skala besar, melainkan menghadang kafilah dagang Abu Sufyan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="peta-lokasi">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge">Visual Geografis</span>
+                <h2 class="section-title">PETA RUTE PERJALANAN</h2>
+                <p class="section-desc">Klik pada titik lokasi interaktif di bawah ini untuk melihat dinamika pergerakan kedua pihak.</p>
+            </div>
+
+            <div class="map-section-box">
+                <div class="svg-map-container">
+                    <svg width="100%" height="100%" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet">
+                        <!-- Desert Map Pattern background -->
+                        <path d="M 0,0 L 800,0 L 800,320 L 0,320 Z" fill="#edf2ee"/>
+                        
+                        <!-- Route Line 1: Madinah to Badr -->
+                        <path d="M 150 80 Q 250 120, 380 180" stroke="#15432c" stroke-width="4" stroke-dasharray="8 6" fill="none"/>
+                        
+                        <!-- Route Line 2: Makkah/Quraisy to Badr -->
+                        <path d="M 650 250 Q 520 220, 420 180" stroke="#c62828" stroke-width="4" stroke-dasharray="8 6" fill="none"/>
+
+                        <!-- Nodes -->
+                        <!-- Madinah -->
+                        <g class="map-node" onclick="showMapInfo('madinah')">
+                            <circle cx="150" cy="80" r="10" fill="#15432c"/>
+                            <circle cx="150" cy="80" r="18" fill="#15432c" opacity="0.2" class="map-node-pulse"/>
+                            <text x="150" y="50" font-weight="bold" fill="#15432c" text-anchor="middle">Madinah</text>
+                        </g>
+
+                        <!-- Perjalanan -->
+                        <g class="map-node" onclick="showMapInfo('perjalanan')">
+                            <circle cx="260" cy="125" r="8" fill="#799b82"/>
+                            <text x="260" y="150" font-size="12" fill="#525b64" text-anchor="middle">Rute Muslimin</text>
+                        </g>
+
+                        <!-- Badar -->
+                        <g class="map-node" onclick="showMapInfo('badar')">
+                            <circle cx="400" cy="180" r="14" fill="#c59b27"/>
+                            <circle cx="400" cy="180" r="24" fill="#c59b27" opacity="0.2" class="map-node-pulse"/>
+                            <text x="400" y="220" font-weight="bold" fill="#15432c" text-anchor="middle">Lembah Badar</text>
+                        </g>
+
+                        <!-- Quraisy Route -->
+                        <g class="map-node" onclick="showMapInfo('quraisy')">
+                            <circle cx="650" cy="250" r="10" fill="#c62828"/>
+                            <text x="650" y="285" font-weight="bold" fill="#c62828" text-anchor="middle">Arah Makkah (Quraisy)</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="map-info-box" id="map-info-box">
+                    <div class="map-info-title" id="map-title">Klik salah satu titik pada peta</div>
+                    <div class="map-info-desc" id="map-desc">Pilih Madinah, Perjalanan, Badar, atau Arah Makkah untuk membaca keterangan geografis.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="strategi" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge">Taktik Militer</span>
+                <h2 class="section-title">STRATEGI YANG DIGUNAKAN</h2>
+                <p class="section-desc">Keberhasilan kaum Muslimin didukung oleh penerapan strategi yang matang dan terukur.</p>
+            </div>
+
+            <div class="strategy-grid">
+                <!-- Card 1 -->
+                <div class="strategy-card">
+                    <div>
+                        <div class="strategy-header">
+                            <span class="strategy-number">01</span>
+                            <div class="strategy-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                        </div>
+                        <h3 class="strategy-title">Pemilihan Posisi</h3>
+                        <p class="strategy-desc">Menempati posisi terdekat dengan mata air Badar atas saran sahabat Hubbab ibn al-Mundhir.</p>
+                    </div>
+                    <button class="btn-analisis" onclick="openStrategyModal(0)">Analisis <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="strategy-card">
+                    <div>
+                        <div class="strategy-header">
+                            <span class="strategy-number">02</span>
+                            <div class="strategy-icon"><i class="fa-solid fa-faucet-drip"></i></div>
+                        </div>
+                        <h3 class="strategy-title">Penguasaan Sumber Air</h3>
+                        <p class="strategy-desc">Menguasai sumur-sumur air dan menutup sumur lainnya agar pasukan musuh mengalami kelelahan.</p>
+                    </div>
+                    <button class="btn-analisis" onclick="openStrategyModal(1)">Analisis <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="strategy-card">
+                    <div>
+                        <div class="strategy-header">
+                            <span class="strategy-number">03</span>
+                            <div class="strategy-icon"><i class="fa-solid fa-chess-board"></i></div>
+                        </div>
+                        <h3 class="strategy-title">Pengaturan Pasukan</h3>
+                        <p class="strategy-desc">Menerapkan formasi 'Shaff' (rapat bershaf) yang inovatif, bukan sistem serangan acak.</p>
+                    </div>
+                    <button class="btn-analisis" onclick="openStrategyModal(2)">Analisis <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="strategy-card">
+                    <div>
+                        <div class="strategy-header">
+                            <span class="strategy-number">04</span>
+                            <div class="strategy-icon"><i class="fa-solid fa-crown"></i></div>
+                        </div>
+                        <h3 class="strategy-title">Kepemimpinan Rasulullah ﷺ</h3>
+                        <p class="strategy-desc">Kepemimpinan yang inklusif, mendengarkan musyawarah sahabat, dan memberi keteladanan moral.</p>
+                    </div>
+                    <button class="btn-analisis" onclick="openStrategyModal(3)">Analisis <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="strategy-card">
+                    <div>
+                        <div class="strategy-header">
+                            <span class="strategy-number">05</span>
+                            <div class="strategy-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        </div>
+                        <h3 class="strategy-title">Kedisiplinan & Ketaatan</h3>
+                        <p class="strategy-desc">Tingkat kepatuhan tinggi terhadap komando pusat serta disiplin menjaga posisi pertempuran.</p>
+                    </div>
+                    <button class="btn-analisis" onclick="openStrategyModal(4)">Analisis <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="strategy-card">
+                    <div>
+                        <div class="strategy-header">
+                            <span class="strategy-number">06</span>
+                            <div class="strategy-icon"><i class="fa-solid fa-handshake"></i></div>
+                        </div>
+                        <h3 class="strategy-title">Kerja Sama Para Sahabat</h3>
+                        <p class="strategy-desc">Solidaritas erat antara Muhajirin dan Ansar yang meleburkan perbedaan demi tujuan bersama.</p>
+                    </div>
+                    <button class="btn-analisis" onclick="openStrategyModal(5)">Analisis <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge">Analisis Kritis</span>
+                <h2 class="section-title">MENGAPA KAUM MUSLIMIN MENANG?</h2>
+                <p class="section-desc">Kemenangan tidak hanya diukur dari angka, melainkan keterpaduan holistik antara faktor internal dan eksternal.</p>
+            </div>
+
+            <div class="factors-wrapper">
+                <div class="factor-item">
+                    <div class="factor-header">
+                        <span class="factor-name">01. Doa & Tawakal Kepada Allah</span>
+                        <span class="factor-percent">100% Utama</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" data-width="100%"></div></div>
+                </div>
+
+                <div class="factor-item">
+                    <div class="factor-header">
+                        <span class="factor-name">02. Kepemimpinan Rasulullah ﷺ</span>
+                        <span class="factor-percent">95%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" data-width="95%"></div></div>
+                </div>
+
+                <div class="factor-item">
+                    <div class="factor-header">
+                        <span class="factor-name">03. Strategi Penguasaan Medan & Air</span>
+                        <span class="factor-percent">90%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" data-width="90%"></div></div>
+                </div>
+
+                <div class="factor-item">
+                    <div class="factor-header">
+                        <span class="factor-name">04. Kedisiplinan Formasi Shaff</span>
+                        <span class="factor-percent">88%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" data-width="88%"></div></div>
+                </div>
+
+                <div class="factor-item">
+                    <div class="factor-header">
+                        <span class="factor-name">05. Keberanian & Moral Pasukan</span>
+                        <span class="factor-percent">85%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" data-width="85%"></div></div>
+                </div>
+
+                <div class="perspective-note">
+                    <i class="fa-solid fa-quote-left"></i> <strong>Catatan Penting:</strong> Kemenangan dalam Perang Badar tidak dapat dipahami hanya dari sisi jumlah pasukan semata. Dalam perspektif Islam, ikhtiar manusia yang rasional dan terstruktur berjalan secara harmonis bersama dengan pertolongan Allah SWT.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="pertolongan-allah">
+        <div class="container">
+            <div class="quran-section">
+                <div class="text-center">
+                    <span class="section-badge" style="background: rgba(255,255,255,0.15); color: #fff;">Sisi Spiritual</span>
+                    <h2 class="section-title" style="color: #fff;">PERTOLONGAN ALLAH</h2>
+                    <p style="color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto;">
+                        Di balik perjuangan fisik di medan laga, terdapat doa khusyuk Rasulullah ﷺ di dalam kemah (Al-Arsy) yang memohon pertolongan Sang Pencipta.
+                    </p>
+                </div>
+
+                <div class="quran-card">
+                    <div class="arabic-text">
+                        إِذْ تَسْتَغِيثُونَ رَبَّكُمْ فَاسْتَجَابَ لَكُمْ أَنِّي مُمِدُّكُم بِأَلْفٍ مِّنَ الْمَلَائِكَةِ مُرْدِفِينَ
+                    </div>
+                    <div class="translation-text">
+                        "(Ingatlah) ketika kamu memohon pertolongan kepada Tuhanmu, lalu diperkenankan-Nya bagimu: 'Sungguh, Aku akan mendatangkan bala bantuan kepadamu dengan seribu malaikat yang datang berturut-turut.'"
+                    </div>
+                    <div class="surah-ref">QS. Al-Anfal : Ayat 9</div>
+                    <button class="btn btn-secondary" onclick="openQuranModal()"><i class="fa-solid fa-book-open"></i> Buka Penjelasan Ayat</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="kemenangan">
+        <div class="container">
+            <div class="victory-grid">
+                <div>
+                    <span class="section-badge">Hasil Akhir</span>
+                    <h2 class="section-title">KEMENANGAN KAUM MUSLIMIN</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.8;">
+                        Pertempuran berakhir dengan kemenangan gemilang di pihak Muslimin. Peristiwa ini melahirkan titik balik politik dan militer yang sangat signifikan di Jazirah Arab.
+                    </p>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        Kedudukan kaum Muslimin yang semula dipandang sebelah mata oleh suku-suku Arab kini berubah menjadi kekuatan besar yang disegani, sekaligus mematahkan keangkuhan elit Quraisy Makkah.
+                    </p>
+                </div>
+
+                <div class="stat-card-box">
+                    <div class="mini-stat-card">
+                        <div class="mini-stat-num">70</div>
+                        <div class="mini-stat-title">Tokoh Quraisy Terbunuh</div>
+                    </div>
+                    <div class="mini-stat-card">
+                        <div class="mini-stat-num">70</div>
+                        <div class="mini-stat-title">Tawanan Perang</div>
+                    </div>
+                    <div class="mini-stat-card">
+                        <div class="mini-stat-num">14</div>
+                        <div class="mini-stat-title">Syuhada Muslimin</div>
+                    </div>
+                    <div class="mini-stat-card">
+                        <div class="mini-stat-num">Yaum al-Furqan</div>
+                        <div class="mini-stat-title">Julukan Peristiwa</div>
+                    </div>
+                </div>
+            </div>
+            <p class="historical-disclaimer text-center">
+                *Catatan Sejarah: Angka pasti jumlah korban dan tawanan dapat memiliki sedikit variasi dalam beberapa riwayat sirah nabawiyah, namun secara umum ulama sejarah sepakat pada perkiraan angka di atas.
+            </p>
+        </div>
+    </section>
+
+    <section class="section-padding" id="hikmah" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge">Pembelajaran Moral</span>
+                <h2 class="section-title">APA YANG BISA KITA PELAJARI?</h2>
+                <p class="section-desc">Nilai-nilai luhur dari Perang Badar yang sangat relevan untuk kehidupan siswa masa kini.</p>
+            </div>
+
+            <div class="hikmah-main-grid">
+                <div class="hikmah-card">
+                    <div class="hikmah-card-title"><i class="fa-solid fa-person-running" style="color: var(--green-primary);"></i> IKHTIAR</div>
+                    <p class="hikmah-card-text">
+                        Berusaha dengan maksimal, menyusun strategi cerdas, dan mempersiapkan fisik serta mental secara optimal sebelum menyerahkan hasil kepada Allah.
+                    </p>
+                </div>
+
+                <div class="hikmah-card">
+                    <div class="hikmah-card-title"><i class="fa-solid fa-shield-heart" style="color: var(--gold-accent);"></i> KEBERANIAN</div>
+                    <p class="hikmah-card-text">
+                        Berani menghadapi kesulitan yang tampak mustahil dan tetap teguh berdiri di atas kebenaran meskipun berada dalam posisi minoritas.
+                    </p>
+                </div>
+
+                <div class="hikmah-card">
+                    <div class="hikmah-card-title"><i class="fa-solid fa-hands-praying" style="color: var(--green-sage);"></i> PERTOLONGAN ALLAH</div>
+                    <p class="hikmah-card-text">
+                        Keyakinan penuh bahwa manusia bertugas berusaha dan berdoa, sementara penentu akhir dari segala urusan berada dalam kehendak Allah SWT.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hikmah-extra-tags">
+                <span class="tag-item"><i class="fa-solid fa-check"></i> Tawakal</span>
+                <span class="tag-item"><i class="fa-solid fa-check"></i> Disiplin Shaff</span>
+                <span class="tag-item"><i class="fa-solid fa-check"></i> Kepemimpinan Musyawarah</span>
+                <span class="tag-item"><i class="fa-solid fa-check"></i> Kerja Sama Solid</span>
+                <span class="tag-item"><i class="fa-solid fa-check"></i> Kesabaran</span>
+                <span class="tag-item"><i class="fa-solid fa-check"></i> Tidak Sombong</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge">Aplikasi Diri</span>
+                <h2 class="section-title">REFLEKSI INTERAKTIF</h2>
+            </div>
+
+            <div class="reflection-card">
+                <div class="reflection-question">
+                    "Jika kamu menghadapi tantangan besar dan rumit (seperti ujian sulit, tugas pemrograman RPL berat, atau masalah hidup), bagaimana sikap terbaik berdasarkan nilai Perang Badar?"
+                </div>
+
+                <div class="reflection-options">
+                    <button class="option-btn" onclick="checkReflection('A')">A. Pasrah dan menyerah karena merasa masalahnya terlalu berat.</button>
+                    <button class="option-btn" onclick="checkReflection('B')">B. Berusaha maksimal menyusun langkah teknis, berdoa khusyuk, dan bertawakal.</button>
+                    <button class="option-btn" onclick="checkReflection('C')">C. Menunggu bantuan teman atau keajaiban tanpa melakukan tindakan awal.</button>
+                    <button class="option-btn" onclick="checkReflection('D')">D. Menghindari tantangan dan mencari jalan pintas.</button>
+                </div>
+
+                <div class="reflection-feedback" id="reflection-feedback"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="quiz" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge">Evaluasi Pemahaman</span>
+                <h2 class="section-title">QUIZ INTERAKTIF</h2>
+                <p class="section-desc">Uji sejauh mana pemahamanmu mengenai sejarah dan hikmah Perang Badar Kubra.</p>
+            </div>
+
+            <div class="quiz-container">
+                <div id="quiz-box">
+                    <div class="quiz-header">
+                        <span class="quiz-progress-text" id="quiz-progress">Soal 1 dari 5</span>
+                        <span style="color: var(--gold-accent); font-weight: 700;"><i class="fa-solid fa-trophy"></i> Evaluasi Badar</span>
+                    </div>
+
+                    <div class="quiz-question" id="quiz-question">Loading Pertanyaan...</div>
+
+                    <div class="quiz-choices" id="quiz-choices">
+                        <!-- Choices dynamically inserted via JS -->
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button class="btn btn-primary" id="btn-quiz-next" onclick="nextQuestion()" disabled>Selanjutnya <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="quiz-result" id="quiz-result">
+                    <i class="fa-solid fa-award" style="font-size: 3rem; color: var(--gold-accent);"></i>
+                    <h3 style="font-size: 1.75rem; color: var(--green-primary); margin-top: 12px;">Hasil Evaluasi Kamu</h3>
+                    <div class="quiz-score" id="quiz-score-num">0</div>
+                    <p id="quiz-feedback-text" style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 24px;"></p>
+                    <button class="btn btn-primary" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Ulangi Quiz</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="conclusion-box">
+                <span class="section-badge">Rangkuman Utama</span>
+                <h2 class="section-title" style="margin-top: 8px;">BADAR BUKAN HANYA TENTANG PERANG</h2>
+                <p style="color: var(--text-muted); max-width: 720px; margin: 0 auto; line-height: 1.8;">
+                    Perang Badar mengajarkan bahwa keberhasilan membutuhkan ikhtiar nyata, strategi matang, keberanian, kesabaran, serta keterikatan hati kepada Sang Maha Kuasa. Manusia memiliki kewajiban untuk berusaha sebaik mungkin, sedangkan hasil akhirnya diserahkan sepenuhnya kepada Allah SWT.
+                </p>
+                <div class="conclusion-quote">
+                    "Berusaha dengan sungguh-sungguh, berdoa dengan tulus, dan bertawakal kepada Allah."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand"><i class="fa-solid fa-kaaba"></i> BADAR KUBRA</div>
+                    <p class="footer-desc">
+                        Media Pembelajaran Sejarah Islam Interaktif yang dirancang untuk mendukung pemahaman siswa SMA/SMK dengan antarmuka modern.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="footer-title">Navigasi Cepat</div>
+                    <ul class="footer-links">
+                        <li><a href="#beranda" class="footer-link">Beranda</a></li>
+                        <li><a href="#sejarah" class="footer-link">Sejarah Singkat</a></li>
+                        <li><a href="#jalannya-perang" class="footer-link">Timeline Perang</a></li>
+                        <li><a href="#strategi" class="footer-link">Strategi Militer</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-title">Pengembang</div>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.6;">
+                        Created by:<br>
+                        <strong style="color: #fff;">Shawqi Zhafirun Hayyan</strong><br>
+                        <span style="color: var(--gold-accent);">Kelas 11 RPL</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                Shawqi Zhafirun Hayyan • 11 RPL © 2026 - Media Pembelajaran Sejarah Islam Interaktif.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Strategy Modal Overlay -->
+    <div class="modal-overlay" id="strategy-modal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeStrategyModal()"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title" id="modal-strat-title">Judul Strategi</h3>
+            
+            <div class="modal-section">
+                <div class="modal-section-subtitle">Apa yang Dilakukan?</div>
+                <p class="modal-section-text" id="modal-strat-action">-</p>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-subtitle">Mengapa Penting?</div>
+                <p class="modal-section-text" id="modal-strat-why">-</p>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-subtitle">Apa Dampaknya?</div>
+                <p class="modal-section-text" id="modal-strat-impact">-</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quran Modal Overlay -->
+    <div class="modal-overlay" id="quran-modal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeQuranModal()"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Konteks Ayat & Tafsir Singkat</h3>
+            <div class="modal-section">
+                <div class="modal-section-subtitle">Tafsir QS. Al-Anfal: 9</div>
+                <p class="modal-section-text">
+                    Ayat ini menegaskan bantuan ribuan malaikat yang dikirimkan Allah untuk memperkuat mental dan keteguhan kaum Muslimin. Kehadiran malaikat bukan karena Allah tidak mampu memenangkan Muslimin secara langsung, melainkan sebagai bentuk kabar gembira dan penenteram hati para sahabat saat menghadapi musuh yang berjumlah tiga kali lipat.
+                </p>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-subtitle">Korelasinya dengan QS. Ali 'Imran: 123-125</div>
+                <p class="modal-section-text">
+                    Dalam surah Ali 'Imran dijelaskan bahwa pertolongan tersebut disyaratkan dengan kesabaran dan ketakwaan. Hal ini mengajarkan bahwa bantuan Allah turun ketika hamba-Nya telah menunjukkan kesabaran dan ketaatan dalam menjalankan perintah-Nya.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity Logic -->
+    <script>
+        
+        // 1. Sticky Navbar & Progress Bar
+        window.addEventListener('scroll', () => {
+            const navbar = id('navbar');
+            const progressBar = id('progress-bar');
+            
+            // Toggle Scrolled Class
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Progress Bar Calculation
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+
+            // Active Link Highlighting based on section scroll
+            const sections = document.querySelectorAll('section');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Hamburger Menu Logic
+        const hamburgerBtn = id('hamburger-btn');
+        const navMenu = id('nav-menu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Helper function
+        function id(e) { return document.getElementById(e); }
+
+        const timelineData = [
+            {
+                title: "Latar Belakang Pencegahan Kafilah",
+                icon: "fa-solid fa-flag",
+                text: "Awal mula perang adalah rencana pembalasan terhadap perampasan harta benda kaum Muhajirin oleh Quraisy. Rasulullah ﷺ bersama sekitar 313 prajurit keluar dari Madinah bukan dengan intensi awal melakukan perang terbuka skala besar, melainkan menghadang kafilah dagang Abu Sufyan."
+            },
+            {
+                title: "Pergerakan & Perubahan Situasi",
+                icon: "fa-solid fa-person-walking-arrow-right",
+                text: "Abu Sufyan mengetahui posisi pasukan Muslimin dan mengalihkan rute perjalanan menyusuri pantai Laut Merah sambil meminta bala bantuan dari Makkah. Quraisy mengirimkan sekitar 1.000 prajurit bersenjata lengkap menuju Badar."
+            },
+            {
+                title: "Pertemuan Pasukan di Lembah Badar",
+                icon: "fa-solid fa-location-crosshairs",
+                text: "Kedua pasukan akhirnya bertemu di Lembah Badar. Atas usulan sahabat Hubbab ibn al-Mundhir, Rasulullah ﷺ menginstruksikan pasukan Muslimin untuk menguasai posisi mata air terdekat dan membendung mata air lainnya."
+            },
+            {
+                title: "Awal Pertempuran & Duel Tanding",
+                icon: "fa-solid fa-khanda",
+                text: "Sesuai tradisi perang Arab kuno, perang diawali duel satu lawan satu. Tiga pahlawan Muslimin (Hamzah, Ali bin Abi Thalib, dan Ubaidah bin al-Harits) berhasil mengalahkan lawan-lawan mereka dari tokoh Quraisy."
+            },
+            {
+                title: "Pertempuran Umum Berlangsung",
+                icon: "fa-solid fa-shield-cat",
+                text: "Pasukan Muslimin bertempur dengan formasi Shaff yang teratur dan rapi. Di tengah perjuangan, Rasulullah ﷺ berdoa secara intensif di kemah (Al-Arsy). Allah menurunkan bantuan malaikat yang memperteguh barisan Muslimin."
+            },
+            {
+                title: "Kemenangan Gemilang Kaum Muslimin",
+                icon: "fa-solid fa-trophy",
+                text: "Barisan musuh kocar-kacir. Tokoh-tokoh penentang Islam seperti Abu Jahal tewas. Kaum Muslimin berhasil meraih kemenangan telak yang mengangkat derajat dan posisi strategis Islam di seluruh Jazirah Arab."
+            }
+        ];
+
+        document.querySelectorAll('.timeline-step').forEach(step => {
+            step.addEventListener('click', function() {
+                document.querySelectorAll('.timeline-step').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                
+                const phaseIndex = this.getAttribute('data-phase');
+                const data = timelineData[phaseIndex];
+                
+                const display = id('timeline-display');
+                display.style.opacity = '0';
+                
+                setTimeout(() => {
+                    id('timeline-title').innerText = data.title;
+                    id('timeline-text').innerText = data.text;
+                    id('timeline-icon').innerHTML = `<i class="${data.icon}"></i>`;
+                    display.style.opacity = '1';
+                }, 200);
+            });
+        });
+
+        const mapData = {
+            madinah: {
+                title: "Madinah al-Munawwarah",
+                desc: "Kota tempat kaum Muslimin membangun pemerintahan dan pusat perjuangan Islam setelah peristiwa Hijrah."
+            },
+            perjalanan: {
+                title: "Rute Perjalanan Muslimin",
+                desc: "Pasukan Muslimin melintasi bukit-bukit batu gersang dengan perbekalan yang sangat terbatas dan unta yang dipakai bergiliran."
+            },
+            badar: {
+                title: "Lembah & Sumur Badar",
+                desc: "Lokasi pertempuran strategis dengan ketersediaan air sumur. Menjadi tempat bersejarah terjadinya Yaum al-Furqan."
+            },
+            quraisy: {
+                title: "Rute Bantuan Quraisy Makkah",
+                desc: "Pasukan Quraisy bertolak dari Makkah dengan semangat keangkuhan dan perlengkapan perang lengkap berjumlah 1.000 orang."
+            }
+        };
+
+        function showMapInfo(locationKey) {
+            const data = mapData[locationKey];
+            if (data) {
+                id('map-title').innerText = data.title;
+                id('map-desc').innerText = data.desc;
+            }
+        }
+
+        const strategyDetails = [
+            {
+                title: "Pemilihan Posisi Strategis",
+                action: "Rasulullah ﷺ menerima pandangan taktis dari sahabat Hubbab ibn al-Mundhir untuk memindahkan markas ke posisi sumur terbawah Badar.",
+                why: "Memastikan ketersediaan pasokan air yang melimpah bagi pasukan Muslimin dan memotong pasokan air untuk musuh.",
+                impact: "Pasukan Muslimin tetap segar dan bertenaga, sementara pasukan Quraisy mengalami dehidrasi di tengah cuaca gurun yang panas."
+            },
+            {
+                title: "Penguasaan Sumber Air",
+                action: "Membangun kolam penampungan air pada sumur utama dan menutup akses ke sumur-sumur kecil lainnya.",
+                why: "Air adalah sumber daya paling krusial dalam pertempuran medan gurun.",
+                impact: "Membatasi daya tahan bertempur pasukan Quraisy secara psikologis maupun fisik."
+            },
+            {
+                title: "Pengaturan Formasi Shaff",
+                action: "Mengatur barisan rapat layaknya shaf shalat: barisan depan memegang tombak bertahan, barisan belakang menggunakan panah.",
+                why: "Mencegah pertempuran acak yang merugikan jumlah pasukan yang lebih sedikit.",
+                impact: "Menahan gempuran awal musuh secara efisien dan efisitif."
+            },
+            {
+                title: "Kepemimpinan Musyawarah",
+                action: "Rasulullah ﷺ mendengarkan serta mengadopsi masukan dari para sahabatnya secara terbuka.",
+                why: "Membangun rasa kepemilikan dan rasa percaya tinggi antara pemimpin dan prajurit.",
+                impact: "Loyalitas dan semangat juang yang luar biasa dari seluruh anggota pasukan."
+            },
+            {
+                title: "Kedisiplinan & Ketaatan Comando",
+                action: "Pasukan Muslimin tidak bergerak sebelum instruksi komando resmi dikeluarkan oleh Nabi ﷺ.",
+                why: "Menjaga keutuhan garis pertahanan dari pancingan emosional musuh.",
+                impact: "Musuh kesulitan menembus pertahanan awal Muslimin."
+            },
+            {
+                title: "Kerja Sama Muhajirin & Ansar",
+                action: "Peleburan dua kelompok Sahabat dalam satu panji keimanan yang menyatu teguh.",
+                why: "Menghilangkan sekat kesukuan yang selama ini mendominasi masyarakat Arab pra-Islam.",
+                impact: "Terciptanya solidaritas tempur yang solid tanpa keraguan."
+            }
+        ];
+
+        function openStrategyModal(index) {
+            const data = strategyDetails[index];
+            id('modal-strat-title').innerText = data.title;
+            id('modal-strat-action').innerText = data.action;
+            id('modal-strat-why').innerText = data.why;
+            id('modal-strat-impact').innerText = data.impact;
+            id('strategy-modal').classList.add('active');
+        }
+
+        function closeStrategyModal() {
+            id('strategy-modal').classList.remove('active');
+        }
+
+        function openQuranModal() {
+            id('quran-modal').classList.add('active');
+        }
+
+        function closeQuranModal() {
+            id('quran-modal').classList.remove('active');
+        }
+
+        function checkReflection(option) {
+            const feedback = id('reflection-feedback');
+            feedback.style.display = 'block';
+
+            if (option === 'B') {
+                feedback.style.background = 'var(--green-light)';
+                feedback.style.color = 'var(--green-primary)';
+                feedback.style.border = '1px solid var(--green-sage)';
+                feedback.innerHTML = `<strong><i class="fa-solid fa-circle-check"></i> Jawaban Sangat Tepat!</strong><br>Ini adalah cerminan sejati dari Perang Badar. Kamu menggabungkan <em>ikhtiar rasional</em> (mengkaji, latihan, menyusun strategi) dengan <em>spiritualitas tinggi</em> (doa dan tawakal).`;
+            } else {
+                feedback.style.background = '#ffebee';
+                feedback.style.color = '#c62828';
+                feedback.style.border = '1px solid #ef9a9a';
+                feedback.innerHTML = `<strong><i class="fa-solid fa-circle-xmark"></i> Kurang Tepat.</strong><br>Sikap ini tidak sesuai dengan teladan Perang Badar. Kaum Muslimin tidak bersikap pasif atau menyerah, melainkan bersiap secara maksimal lalu menyerahkan hasilnya kepada Allah SWT. Coba pilih jawaban <strong>B</strong>!`;
+            }
+        }
+
+        const quizData = [
+            {
+                q: "Perang Badar Kubra terjadi pada tanggal dan tahun berapa?",
+                choices: ["17 Ramadan 2 H", "10 Syawwal 3 H", "1 Muharram 1 H", "12 Rabiul Awal 4 H"],
+                correct: 0
+            },
+            {
+                q: "Di mana lokasi pertempuran Badar berlangsung?",
+                choices: ["Sekitar Kota Makkah", "Lembah dekat sumur Badar", "Padang Arafah", "Puncak Bukit Uhud"],
+                correct: 1
+            },
+            {
+                q: "Siapa sahabat yang memberikan saran taktis untuk menguasai sumur air Badar?",
+                choices: ["Abu Bakar as-Siddiq", "Umar bin Khattab", "Hubbab ibn al-Mundhir", "Ali bin Abi Thalib"],
+                correct: 2
+            },
+            {
+                q: "Apa nama Surah Al-Qur'an yang menyebutkan janji bantuan seribu malaikat di Perang Badar?",
+                choices: ["QS. Al-Baqarah", "QS. Al-Anfal: 9", "QS. Yasin", "QS. Al-Ikhlas"],
+                correct: 1
+            },
+            {
+                q: "Apa julukan hari terjadinya Perang Badar dalam Al-Qur'an?",
+                choices: ["Yaum al-Arafah", "Yaum al-Qiyamah", "Yaum al-Furqan (Hari Pembeda)", "Yaum al-Fath"],
+                correct: 2
+            },
+            {
+                q: "Bagaimana korelasi antara ikhtiar dan tawakal yang dicontohkan dalam Perang Badar?",
+                choices: [
+                    "Tawakal saja tanpa perlu persiapan fisik",
+                    "Ikhtiar maksimal dahulu lalu berdoa dan bertawakal",
+                    "Hanya mengandalkan jumlah pasukan yang banyak",
+                    "Menunggu bantuan tanpa berusaha"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let score = 0;
+        let selectedChoice = null;
+
+        function loadQuizQuestion() {
+            selectedChoice = null;
+            id('btn-quiz-next').disabled = true;
+            
+            const qObj = quizData[currentQuizIndex];
+            id('quiz-progress').innerText = `Soal ${currentQuizIndex + 1} dari ${quizData.length}`;
+            id('quiz-question').innerText = qObj.q;
+
+            const choicesBox = id('quiz-choices');
+            choicesBox.innerHTML = '';
+
+            qObj.choices.forEach((choiceText, i) => {
+                const choiceDiv = document.createElement('div');
+                choiceDiv.className = 'quiz-choice';
+                choiceDiv.innerHTML = `<i class="fa-regular fa-circle"></i> <span>${choiceText}</span>`;
+                choiceDiv.onclick = () => selectChoice(i, choiceDiv);
+                choicesBox.appendChild(choiceDiv);
+            });
+        }
+
+        function selectChoice(index, element) {
+            document.querySelectorAll('.quiz-choice').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('i').className = 'fa-regular fa-circle';
+            });
+
+            selectedChoice = index;
+            element.classList.add('selected');
+            element.querySelector('i').className = 'fa-solid fa-circle-check';
+            id('btn-quiz-next').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (selectedChoice === null) return;
+
+            if (selectedChoice === quizData[currentQuizIndex].correct) {
+                score += 100 / quizData.length;
+            }
+
+            currentQuizIndex++;
+
+            if (currentQuizIndex < quizData.length) {
+                loadQuizQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            id('quiz-box').style.display = 'none';
+            const resultBox = id('quiz-result');
+            resultBox.style.display = 'block';
+
+            const finalScore = Math.round(score);
+            id('quiz-score-num').innerText = finalScore;
+
+            const feedbackText = id('quiz-feedback-text');
+            if (finalScore >= 90) {
+                feedbackText.innerText = "Pemahamanmu sangat baik! Kamu menguasai materi sejarah & hikmah Perang Badar dengan sempurna.";
+            } else if (finalScore >= 70) {
+                feedbackText.innerText = "Pemahamanmu sudah cukup baik. Pertahankan dan perdalam lagi materi sejarah Islam ini.";
+            } else if (finalScore >= 50) {
+                feedbackText.innerText = "Masih perlu mengulang beberapa bagian. Cobalah membacanya kembali dengan teliti.";
+            } else {
+                feedbackText.innerText = "Coba pelajari kembali materi Perang Badar dari awal untuk hasil yang lebih baik.";
+            }
+        }
+
+        function restartQuiz() {
+            currentQuizIndex = 0;
+            score = 0;
+            id('quiz-box').style.display = 'block';
+            id('quiz-result').style.display = 'none';
+            loadQuizQuestion();
+        }
+
+        let statsAnimated = false;
+        const statsSection = document.querySelector('.stats-grid');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) {
+                    animateCounters();
+                    statsAnimated = true;
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (statsSection) observer.observe(statsSection);
+
+        function animateCounters() {
+            document.querySelectorAll('.stat-number').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const speed = target / 50;
+
+                const updateCount = () => {
+                    count += speed;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Progress bar fill animation on view
+        const factorObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.progress-fill').forEach(fill => {
+                        fill.style.width = fill.getAttribute('data-width');
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const factorsSection = document.querySelector('.factors-wrapper');
+        if (factorsSection) factorObserver.observe(factorsSection);
+
+        // Initialize quiz on DOM load
+        window.onload = function() {
+            loadQuizQuestion();
+        };
+    </script>
+</body>
+</html>
